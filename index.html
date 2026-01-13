@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SML Group | Andaman & Nicobar Contest 2026</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body class="corporate-theme">
+    <div class="landing-container">
+        <div class="brand-header">
+            <span class="brand-name">SML GROUP</span>
+        </div>
+
+        <header class="contest-titles">
+            <h1 class="main-heading">Andaman & Nicobar Contest - 2026</h1>
+            <p class="sub-heading">Period: 01/01/2026 to 30/04/2026</p>
+        </header>
+
+        <div class="action-card">
+            <p class="instruction-text">Track performance and check individual qualification status below:</p>
+            <div class="button-group">
+                <a href="top_25.html" class="nav-btn primary">
+                    <span class="icon">🏆</span>
+                    <span class="btn-text">Top 25</span>
+                </a>
+                <a href="personal_search.html" class="nav-btn secondary">
+                    <span class="icon">🔍</span>
+                    <span class="btn-text">Position</span>
+                </a>
+                <button class="nav-btn outline" onclick="toggleModal('criteriaModal', true)">
+                    <span class="icon">📋</span>
+                    <span class="btn-text">Criteria</span>
+                </button>
+                <button class="nav-btn explore" onclick="toggleModal('exploreModal', true)">
+                    <span class="icon">🏝️</span>
+                    <span class="btn-text">Explore Andaman</span>
+                </button>
+            </div>
+        </div>
+
+       
+    </div>
+
+    <div id="criteriaModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-btn" onclick="toggleModal('criteriaModal', false)">&times;</span>
+            <h2 class="modal-header">Contest Criteria</h2>
+            
+            <div class="criteria-section">
+                <h3>Standard Category</h3>
+                <div class="criteria-item"><span>Outstanding below ₹50L</span><strong>₹15L Growth + 3 FC</strong></div>
+                <div class="criteria-item"><span>Outstanding ₹50L to ₹1Cr</span><strong>₹20L Growth + 4 FC</strong></div>
+                <div class="criteria-item"><span>Outstanding ₹1Cr to ₹5Cr</span><strong>₹30L Growth + 5 FC</strong></div>
+                <div class="criteria-item"><span>Outstanding ₹5Cr & above</span><strong>₹35L Growth + 6 FC</strong></div>
+            </div>
+
+            <div class="criteria-section marketing-staff">
+                <h3>Investment Marketing Staff</h3>
+                <div class="criteria-item"><span>Outstanding below ₹10Cr</span><strong>₹55L Growth + 7 FC</strong></div>
+                <div class="criteria-item"><span>Outstanding ₹10Cr & above</span><strong>₹60L Growth + 8 FC</strong></div>
+            </div>
+            <p class="note">*Fresh Customers (FC) Min. Amt. ₹25,000</p>
+        </div>
+    </div>
+
+    <div id="exploreModal" class="modal-overlay">
+        <div class="modal-content gallery-content">
+            <span class="close-btn" onclick="toggleModal('exploreModal', false)">&times;</span>
+            <h2 class="modal-header">Glimpse of Andaman</h2>
+            <div class="slider-wrapper">
+                <div class="slider-container" id="mainSlider">
+                    <img src="a1.jpeg" class="slide active" alt="Andaman 1">
+                    <img src="a2.jpeg" class="slide" alt="Andaman 2">
+                    <img src="a3.jpeg" class="slide" alt="Andaman 3">
+                    <img src="a4.jpeg" class="slide" alt="Andaman 4">
+                    <img src="a5.jpeg" class="slide" alt="Andaman 5">
+                    <img src="a6.jpeg" class="slide" alt="Andaman 6">
+                    <img src="a7.jpeg" class="slide" alt="Andaman 7">
+                    <img src="a8.jpeg" class="slide" alt="Andaman 8">
+                    <img src="a9.jpeg" class="slide" alt="Andaman 9">
+                    <img src="a10.jpeg" class="slide" alt="Andaman 10">
+                    <img src="a11.jpeg" class="slide" alt="Andaman 11">
+                    <img src="a12.jpeg" class="slide" alt="Andaman 12">
+                </div>
+            </div>
+            <button class="slider-nav" onclick="nextSlide()">Next ➔</button>
+        </div>
+    </div>
+
+    <script>
+        function toggleModal(id, show) {
+            document.getElementById(id).style.display = show ? 'flex' : 'none';
+        }
+
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        function nextSlide() {
+            // Outgoing slide
+            slides[currentSlide].classList.remove('active');
+            slides[currentSlide].classList.add('prev');
+            
+            let prevIndex = currentSlide;
+            currentSlide = (currentSlide + 1) % slides.length;
+            
+            // Incoming slide
+            slides[currentSlide].classList.add('active');
+            
+            // Cleanup
+            setTimeout(() => {
+                slides[prevIndex].classList.remove('prev');
+            }, 800);
+        }
+    </script>
+</body>
+</html>

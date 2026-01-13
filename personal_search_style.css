@@ -1,0 +1,196 @@
+/* SML Group Professional Theme */
+:root {
+    --primary-blue: #00BFFF; /* Deep Sky Blue */
+    --bg-dark: #0f172a;
+    --card-bg: rgba(30, 41, 59, 0.7);
+    --text-main: #f8fafc;
+    --text-dim: #94a3b8;
+    --success: #22c55e;
+    --gold: #fbbf24;
+}
+
+body.search-theme {
+    background-color: var(--bg-dark);
+    background-image: radial-gradient(circle at top right, rgba(0, 191, 255, 0.1), transparent),
+                      radial-gradient(circle at bottom left, rgba(0, 191, 255, 0.05), transparent);
+    color: var(--text-main);
+    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header {
+    text-align: center;
+    padding: 3rem 1rem;
+}
+
+.page-title {
+    font-size: 2.5rem;
+    margin: 0;
+    background: linear-gradient(to right, #fff, var(--primary-blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.tagline {
+    color: var(--text-dim);
+    margin-top: 0.5rem;
+}
+
+/* Search Box Container */
+.search-container {
+    width: 90%;
+    max-width: 600px;
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    display: flex;
+    gap: 10px;
+    margin-bottom: 2rem;
+}
+
+.autocomplete-wrapper {
+    flex-grow: 1;
+    position: relative;
+}
+
+input#staffNameInput {
+    width: 100%;
+    padding: 12px 16px;
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid #334155;
+    border-radius: 8px;
+    color: white;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+input#staffNameInput:focus {
+    border-color: var(--primary-blue);
+    box-shadow: 0 0 0 2px rgba(0, 191, 255, 0.2);
+}
+
+#searchButton {
+    padding: 12px 24px;
+    background: var(--primary-blue);
+    border: none;
+    border-radius: 8px;
+    color: #000;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.1s;
+}
+
+#searchButton:hover {
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+}
+
+/* Suggestions Dropdown */
+.suggestions-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 8px;
+    margin-top: 5px;
+    z-index: 100;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.suggestion-item {
+    padding: 10px 15px;
+    cursor: pointer;
+    border-bottom: 1px solid #334155;
+}
+
+.suggestion-item:hover {
+    background: var(--primary-blue);
+    color: black;
+}
+
+/* Result Card Logic */
+.personal-card {
+    width: 90%;
+    max-width: 600px;
+    background: var(--card-bg);
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(0, 191, 255, 0.3);
+    animation: slideUp 0.4s ease-out;
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.card-header {
+    background: rgba(0, 191, 255, 0.1);
+    padding: 20px;
+    text-align: center;
+    border-bottom: 1px solid rgba(0, 191, 255, 0.2);
+}
+
+.stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.stat-box {
+    background: var(--bg-dark);
+    padding: 25px 15px;
+    text-align: center;
+}
+
+.stat-box label {
+    display: block;
+    color: var(--text-dim);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+
+.stat-box .val {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: white;
+}
+
+.stat-box.met .val {
+    color: var(--primary-blue);
+}
+
+.status-banner {
+    padding: 20px;
+    text-align: center;
+    font-weight: 700;
+    background: #1e293b;
+    color: var(--text-dim);
+    letter-spacing: 1px;
+}
+
+.status-banner.winner {
+    background: linear-gradient(to right, #1e3a8a, #1e40af);
+    color: white;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.loading-indicator {
+    color: var(--primary-blue);
+    font-style: italic;
+    margin-bottom: 1rem;
+}

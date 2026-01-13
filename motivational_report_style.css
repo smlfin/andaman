@@ -1,0 +1,112 @@
+/* Subtle Corporate Theme for SML Group */
+:root {
+    --primary-blue: #00BFFF;
+    --text-dark: #1e293b;
+    --text-muted: #64748b;
+    --bg-subtle: #f8fafc;
+    --card-white: #ffffff;
+    --border-light: #e2e8f0;
+    --winner-bg: rgba(0, 191, 255, 0.05);
+}
+
+body.position-dynamic-bg {
+    background-color: var(--bg-subtle);
+    background-image: 
+        radial-gradient(at 0% 0%, rgba(0, 191, 255, 0.05) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(0, 191, 255, 0.05) 0px, transparent 50%);
+    color: var(--text-dark);
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 10px; /* Reduced for mobile */
+}
+
+header {
+    text-align: center;
+    padding: 20px 10px;
+}
+
+.page-title {
+    font-size: 1.8rem; /* Scaled down for mobile */
+    font-weight: 800;
+    line-height: 1.2;
+}
+
+.tagline {
+    color: var(--text-muted);
+    font-size: 1rem;
+    margin-top: 10px;
+}
+
+.report-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    background: var(--card-white);
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.report-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.report-table th {
+    background: #f1f5f9;
+    padding: 16px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    border-bottom: 2px solid var(--border-light);
+}
+
+.report-table td {
+    padding: 16px;
+    border-bottom: 1px solid var(--border-light);
+}
+
+/* Mobile Responsive Transformation */
+@media (max-width: 768px) {
+    .report-table, .report-table thead, .report-table tbody, .report-table th, .report-table td, .report-table tr { 
+        display: block; 
+    }
+
+    .report-table thead {
+        display: none; /* Hide headers on mobile */
+    }
+
+    .report-table tr {
+        margin-bottom: 15px;
+        border: 1px solid var(--border-light);
+        border-radius: 8px;
+        padding: 10px;
+        background: white;
+    }
+
+    .report-table td {
+        text-align: right;
+        padding: 10px 15px;
+        position: relative;
+        border-bottom: 1px dashed #eee;
+    }
+
+    .report-table td:last-child {
+        border-bottom: none;
+    }
+
+    /* Use data-label for mobile headers */
+    .report-table td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 15px;
+        font-weight: 700;
+        text-transform: uppercase;
+        font-size: 0.75rem;
+        color: var(--text-muted);
+    }
+    
+    .page-title { font-size: 1.5rem; }
+}
+
+.winner-row { background-color: var(--winner-bg); }
+.achieved-val { color: var(--primary-blue); font-weight: 700; }

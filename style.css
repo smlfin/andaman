@@ -1,0 +1,193 @@
+/* SML Group Professional Corporate Style */
+:root {
+    --primary-blue: #00BFFF;
+    --deep-bg: #0f172a; 
+    --card-bg: rgba(30, 41, 59, 0.8);
+    --text-white: #f8fafc;
+    --text-dim: #94a3b8;
+    --accent-glow: rgba(0, 191, 255, 0.25);
+}
+
+body.corporate-theme {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    /* Updated room background: Elegant Modern Office Vibe */
+    background: radial-gradient(circle at 50% 50%, #1e293b 0%, #0f172a 100%);
+    background-image: 
+        linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.8)),
+        url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
+    color: var(--text-white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.landing-container {
+    text-align: center;
+    width: 90%;
+    max-width: 800px;
+    padding: 2rem;
+    position: relative;
+    z-index: 5;
+}
+
+.brand-name {
+    font-weight: 800;
+    font-size: 1.2rem;
+    letter-spacing: 6px;
+    color: var(--primary-blue);
+    margin-bottom: 2.5rem;
+    display: block;
+    text-shadow: 0 0 10px var(--accent-glow);
+}
+
+.main-heading {
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin: 0;
+    text-transform: uppercase;
+    background: linear-gradient(to bottom, #fff, #94a3b8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.sub-heading {
+    color: var(--text-dim);
+    margin-top: 10px;
+    margin-bottom: 3.5rem;
+    font-weight: 600;
+}
+
+.action-card {
+    background: var(--card-bg);
+    padding: 2.5rem 2rem;
+    border-radius: 30px;
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(0, 191, 255, 0.2);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+
+.button-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 25px;
+}
+
+.nav-btn {
+    text-decoration: none;
+    padding: 14px 28px;
+    border-radius: 14px;
+    font-weight: 600;
+    transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.95rem;
+}
+
+.nav-btn:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
+.nav-btn.primary { background: var(--primary-blue); color: #000; }
+.nav-btn.secondary { background: rgba(255,255,255,0.1); color: #fff; }
+.nav-btn.outline { background: transparent; border: 1px solid var(--primary-blue); color: var(--primary-blue); }
+.nav-btn.explore { background: #0284c7; color: white; border: 1px solid #38bdf8; }
+
+/* MODALS */
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top:0; left:0; width:100%; height:100%;
+    background: rgba(10, 15, 28, 0.96);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(12px);
+}
+
+.modal-content {
+    background: #1e293b;
+    padding: 40px;
+    border-radius: 28px;
+    width: 90%;
+    max-width: 550px;
+    position: relative;
+    border: 1px solid var(--primary-blue);
+    box-shadow: 0 0 40px rgba(0, 191, 255, 0.15);
+}
+
+/* Gallery Specific Fixes */
+.gallery-content { max-width: 650px; height: 550px; display: flex; flex-direction: column; }
+
+.slider-wrapper {
+    position: relative;
+    width: 100%;
+    flex-grow: 1;
+    perspective: 2000px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.slider-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.slide {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 90%;
+    height: 90%;
+    object-fit: contain; /* FIX: Image will never be cut off */
+    border-radius: 20px;
+    opacity: 0;
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translate(-50%, -50%) rotateY(90deg) translateZ(300px) scale(0.4);
+}
+
+.slide.active {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotateY(0deg) translateZ(0) scale(1);
+    z-index: 5;
+}
+
+.slide.prev {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotateY(-90deg) translateZ(300px) scale(0.4);
+    z-index: 1;
+}
+
+.slider-nav {
+    margin: 20px auto;
+    background: var(--primary-blue);
+    color: #000;
+    border: none;
+    padding: 12px 45px;
+    border-radius: 50px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.slider-nav:hover { background: #fff; transform: scale(1.05); }
+
+/* Criteria Content Styling */
+.modal-header { color: var(--primary-blue); margin-bottom: 25px; text-align: center; font-size: 1.8rem; }
+.criteria-section { margin-bottom: 25px; text-align: left; }
+.criteria-section h3 { font-size: 0.85rem; color: var(--text-dim); text-transform: uppercase; border-bottom: 1px solid #334155; padding-bottom: 8px; margin-bottom: 12px; }
+.criteria-item { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.95rem; }
+.marketing-staff { background: rgba(0, 191, 255, 0.04); padding: 20px; border-radius: 15px; border: 1px dashed rgba(0, 191, 255, 0.2); }
+.close-btn { position: absolute; right: 25px; top: 20px; font-size: 32px; cursor: pointer; color: var(--text-dim); transition: 0.3s; }
+.close-btn:hover { color: #fff; }
+.note { font-size: 0.8rem; color: var(--text-dim); text-align: center; margin-top: 20px; font-style: italic; }
+
+.brand-footer { margin-top: 4rem; font-size: 0.9rem; color: var(--text-dim); line-height: 1.8; max-width: 600px; margin-left: auto; margin-right: auto; }
