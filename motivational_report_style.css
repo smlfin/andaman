@@ -1,0 +1,126 @@
+/* SML Group Professional Contest Stylesheet - 2026 */
+:root {
+    --sml-blue: #00BFFF;
+    --dark-slate: #0f172a;
+    --text-main: #334155;
+    --text-light: #64748b;
+    --white: #ffffff;
+    --bg-light: #f1f5f9;
+    --border: #e2e8f0;
+    --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+    --success-green: #10b981;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    background-color: var(--bg-light);
+    color: var(--text-main);
+    font-family: 'Inter', -apple-system, sans-serif;
+    margin: 0;
+    padding: 15px;
+    line-height: 1.5;
+}
+
+header {
+    text-align: center;
+    padding: 30px 10px;
+}
+
+.page-title {
+    color: var(--dark-slate);
+    font-size: 1.75rem;
+    font-weight: 800;
+    margin: 0;
+}
+
+.tagline {
+    color: var(--sml-blue);
+    font-weight: 600;
+    margin-top: 8px;
+    font-size: 0.9rem;
+}
+
+.report-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: var(--white);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+}
+
+.report-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+.report-table thead {
+    background-color: #f8fafc;
+}
+
+.report-table th {
+    padding: 16px;
+    text-align: left;
+    color: var(--text-light);
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    border-bottom: 2px solid var(--border);
+}
+
+.report-table tr {
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s;
+}
+
+.report-table tr:hover { background-color: #f0f9ff; }
+.report-table td { padding: 16px; vertical-align: middle; }
+
+/* Progress Bar */
+.progress-container { width: 100%; max-width: 120px; }
+.progress-bg { 
+    background: #e2e8f0; 
+    border-radius: 10px; 
+    height: 8px; 
+    overflow: hidden; 
+    margin-top: 5px; 
+}
+.progress-fill { 
+    height: 100%; 
+    background: var(--sml-blue); 
+    transition: width 0.5s ease-in-out; 
+}
+
+/* Ticket Badge */
+.ticket-badge {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: white;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-weight: 800;
+    font-size: 0.75rem;
+    display: inline-block;
+    box-shadow: 0 2px 4px rgba(217, 119, 6, 0.3);
+}
+
+.winner-row { background-color: #f0fdf4 !important; }
+
+/* Mobile Optimization */
+@media (max-width: 850px) {
+    .report-table thead { display: none; }
+    .report-table tr { display: block; margin: 15px; border: 1px solid var(--border); border-radius: 12px; }
+    .report-table td { 
+        display: flex; justify-content: space-between; align-items: center; 
+        text-align: right; padding: 12px; border-bottom: 1px solid #f1f5f9;
+    }
+    .report-table td:last-child { border-bottom: none; }
+    .report-table td::before { 
+        content: attr(data-label); 
+        font-weight: 700; 
+        color: var(--text-light); 
+        font-size: 0.7rem; 
+        text-transform: uppercase;
+    }
+}
