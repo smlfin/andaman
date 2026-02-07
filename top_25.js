@@ -1,4 +1,4 @@
-// top_25.js - Full Logic with Progress Bars & Ticket Surplus Rule
+// top_25.js - Logic updated to sort by Achievement Percentage
 const CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTlys14AiGHJNcXDBF-7tgiPZhIPN4Kl90Ml5ua9QMivwQz0_8ykgI-jo8fB3c9TZnUrMjF2Xfa3FO5/pub?gid=216440093&single=true&output=csv';
 
 window.HEADERS = {
@@ -46,15 +46,15 @@ window.calculateStatus = function(row) {
     const bizMet = bizAch >= bizTarget;
     const fcMet = fcAch >= fcTarget;
     
-    // Progress for the visual bar (0-100)
-    const progressPerc = bizTarget > 0 ? Math.min(100, (bizAch / bizTarget) * 100).toFixed(0) : 0;
+    // Progress for the visual bar (can exceed 100 for sorting, capped at 100 for UI bar)
+    const rawProgress = bizTarget > 0 ? (bizAch / bizTarget) * 100 : 0;
+    const progressPerc = Math.min(100, rawProgress).toFixed(0);
 
     let tickets = 0;
     let remark = "";
 
     if (bizMet && fcMet) {
         const surplus = bizAch - bizTarget;
-        // 1 ticket for meeting target + 1 for every 40,00,000 extra
         tickets = 1 + Math.floor(surplus / 4000000); 
         remark = `<span class="ticket-badge">🎟️ ${tickets} TICKET${tickets > 1 ? 'S' : ''} QUALIFIED</span>`;
     } else {
@@ -67,20 +67,21 @@ window.calculateStatus = function(row) {
         }
     }
 
-    return { tickets, remark, progressPerc };
+    return { tickets, remark, progressPerc, rawProgress };
 };
 
 function renderReport(data) {
     const container = document.getElementById('report-container');
     if (!container) return;
 
-    // Filter out rows where target is 0 or name is missing
     const activeData = data.filter(row => row[window.HEADERS.NAME] && window.getNumeric(row[window.HEADERS.BIZ_TARGET]) > 0);
 
-    // Sort by Business Achievement amount (Highest first)
-    const sorted = activeData.sort((a, b) => 
-        window.getNumeric(b[window.HEADERS.BIZ_ACH]) - window.getNumeric(a[window.HEADERS.BIZ_ACH])
-    ).slice(0, 25);
+    // SORTING LOGIC: Based on percentage of achievement (Highest % first)
+    const sorted = activeData.sort((a, b) => {
+        const percA = window.getNumeric(a[window.HEADERS.BIZ_ACH]) / window.getNumeric(a[window.HEADERS.BIZ_TARGET]);
+        const percB = window.getNumeric(b[window.HEADERS.BIZ_ACH]) / window.getNumeric(b[window.HEADERS.BIZ_TARGET]);
+        return percB - percA; // Descending sort
+    }).slice(0, 25);
 
     let html = `<table class="report-table">
                     <thead>
@@ -106,7 +107,7 @@ function renderReport(data) {
                     <span class="sub-text">${row[window.HEADERS.COMPANY]}</span>
                 </td>
                 <td data-label="Achievement Status" class="cell-ach">
-                    <div class="achieved-val">${window.formatCurr(row[window.HEADERS.BIZ_ACH])}</div>
+                    <div class="achieved-val">${window.formatCurr(row[window.HEADERS.BIZ_ACH])} (${progressPerc}%)</div>
                     <div class="progress-container">
                         <div class="progress-bg"><div class="progress-fill" style="width: ${progressPerc}%"></div></div>
                         <span class="sub-text">Target: ${window.formatCurr(row[window.HEADERS.BIZ_TARGET])}</span>
